@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<!-- https://maven.apache.org/pom.html -->
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.6.6</version>
+	</parent>
+
+	<groupId>com.caigk</groupId>
+	<artifactId>spring-boot-starter-parent</artifactId>
+	<version>0.1.0</version>
+	<name>spring-boot-starter-parent</name>
+	<description>caigk spring boot starter</description>
+	<url></url>
+	<packaging>pom</packaging>
+
+	<organization>
+		<name>caigk</name>
+		<url>http://www.caigk.com</url>
+	</organization>
+
+	<properties>
+		<!--maven.build.timestamp保存了maven编译时间戳-->
+		<timestamp>${maven.build.timestamp}</timestamp>
+		<!--指定时间格式-->
+		<!-- <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format> -->
+
+		<!-- 为子项目提供公共配置 -->
+		<java.version>17</java.version>
+		<!-- 重要：会影响集成环境java版本 9以上版本用RELEASE -->
+		<maven.compiler.release>17</maven.compiler.release>
+
+		<!-- 版本变量 -->
+		<version.lombok>1.18.22</version.lombok>
+		<version.vavr>0.10.3</version.vavr>
+		
+		<!-- json序列化 -->
+		<version.vavr-jackson>0.10.3</version.vavr-jackson>
+		<version.jackson-databind>2.13.2.2</version.jackson-databind>
+		<version.jackson-annotations>2.13.2</version.jackson-annotations>
+		<version.jackson-datatype-jsr310>2.13.2</version.jackson-datatype-jsr310>
+
+		<!-- 注意springdoc1.64使用的annotation2.12 -->
+		<version.swagger-annotations>2.1.2</version.swagger-annotations>
+		<version.springdoc-openapi-ui>1.6.4</version.springdoc-openapi-ui>
+		<version.springdoc-openapi-data-rest>1.6.4</version.springdoc-openapi-data-rest>
+
+		<!-- 测试 -->
+		<version.jmockdata>4.2.0</version.jmockdata>
+	</properties>
+
+	<!-- 指定版本 子模块中禁止出现版本号-->
+	<dependencyManagement>
+		<dependencies>
+			<!--  -->
+			<dependency>
+				<groupId>io.vavr</groupId>
+				<artifactId>vavr</artifactId>
+				<version>${version.vavr}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.vavr</groupId>
+				<artifactId>vavr-jackson</artifactId>
+				<version>${version.vavr-jackson}</version>
+			</dependency>
+			<!--  -->
+			<dependency>
+				<groupId>com.baomidou</groupId>
+				<artifactId>mybatis-plus-boot-starter</artifactId>
+				<version>3.3.1</version>
+			</dependency>
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>fastjson</artifactId>
+				<version>1.2.80</version>
+			</dependency>
+			<!--s7协议-->
+			<dependency>
+				<groupId>com.github.s7connector</groupId>
+				<artifactId>s7connector</artifactId>
+				<version>2.1</version>
+			</dependency>
+			<!-- 报表jasperreports 开始 -->
+			<dependency>
+				<groupId>net.sf.jasperreports</groupId>
+				<artifactId>jasperreports</artifactId>
+				<version>6.19.1</version>
+			</dependency>
+			<dependency>
+				<groupId>net.sf.jasperreports</groupId>
+				<artifactId>jasperreports-fonts</artifactId>
+				<version>6.19.1</version>
+			</dependency>
+			<!-- 自定义的报表字体 -->
+			<dependency>
+				<groupId>my</groupId>
+				<artifactId>font_hei</artifactId>
+				<version>0.0.1</version>
+			</dependency>
+			<!-- 报表jasperreports 结束 -->
+			<dependency>
+				<!-- snake参数转换使用 -->
+				<groupId>com.google.guava</groupId>
+				<artifactId>guava</artifactId>
+				<version>31.1-jre</version>
+			</dependency>
+			<!-- swagger3 -->
+			<dependency>
+				<groupId>io.swagger.core.v3</groupId>
+				<artifactId>swagger-annotations</artifactId>
+				<version>${version.swagger-annotations}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springdoc</groupId>
+				<artifactId>springdoc-openapi-ui</artifactId>
+				<version>${version.springdoc-openapi-ui}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springdoc</groupId>
+				<artifactId>springdoc-openapi-data-rest</artifactId>
+				<version>${version.springdoc-openapi-data-rest}</version>
+			</dependency>
+			<!-- 前端 -->
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>webjars-locator-core</artifactId>
+				<version>0.50</version>
+			</dependency>
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>bootstrap</artifactId>
+				<version>5.1.3</version>
+			</dependency>
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>sockjs-client</artifactId>
+				<version>1.5.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>stomp-websocket</artifactId>
+				<version>2.3.4</version>
+			</dependency>
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>jquery</artifactId>
+				<version>3.5.1</version>
+				<scope>runtime</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>font-awesome</artifactId>
+				<version>5.15.1</version>
+				<scope>runtime</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>momentjs</artifactId>
+				<version>2.24.0</version>
+				<scope>runtime</scope>
+			</dependency>
+			<!-- 测试 -->
+			<dependency>
+				<groupId>cn.com.baitech</groupId>
+				<artifactId>atc-v2-test</artifactId>
+				<version>${project.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.mybatis.spring.boot</groupId>
+				<artifactId>mybatis-spring-boot-starter-test</artifactId>
+				<version>2.2.2</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.github.jsonzou</groupId>
+				<artifactId>jmockdata</artifactId>
+				<version>${version.jmockdata}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	<dependencies>
+		<!-- 为子项目提供公共配置 -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>${version.lombok}</version>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>io.vavr</groupId>
+			<artifactId>vavr</artifactId>
+		</dependency>
+		<!-- 提供JSR303验证注解 -->
+		<dependency>
+			<groupId>jakarta.validation</groupId>
+			<artifactId>jakarta.validation-api</artifactId>
+		</dependency>
+		<!-- jaon注解 -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+		</dependency>
+	</dependencies>
+
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+</project>
